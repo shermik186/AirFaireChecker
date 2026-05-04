@@ -64,7 +64,12 @@ def load_from_specified_json(departue, arrival):
 
 def save_to_specific_file(flight_data, departure, arrival):
     file_name = f"{departure}-{arrival}.json"
+
     file_path = BASE_DIR/"data"/ file_name
+
+    # create folder if it doesn't exist ->data folder on cloud
+    file_path.parent.mkdir(parents=True, exist_ok=True)
+
 
     existing_data = load_from_specified_json(departure, arrival)
     existing_data.extend(flight_data)
