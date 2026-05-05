@@ -139,4 +139,48 @@ def price_drop_message(flight):
 
     return message.strip()
 
+def not_working_api(departure,arrival,date):
+    message = f"""
+    API ERROR ⚠️ 
+    📍 Route: {departure} → {arrival}
+    📅 Date: {date}
+    Unfortunately, our API wasn't able to get information about your route.
+    We hope that this will not happen again in the future.
+    AIR FAIR CHECKER developer
+    """
 
+    return message.strip()
+
+def not_enough_data_for_price_drop(departure,arrival,date):
+    message = f"""
+        NOT ENOUGH DATA ⛔ 
+        📍 Route: {departure} → {arrival}
+        📅 Date: {date}
+        Unfortunately, we don´t have enough data yet to provide you with price drop/increase.
+        Tomorrow we will able to do so.
+        Thank you for your understanding.
+        AIR FAIR CHECKER developer
+        """
+
+    return message.strip()
+
+def no_flights(departure,arrival,date):
+    message = f"""
+    ✈️No Cheap Flight Found!
+    📍 Route: {departure} → {arrival}
+    📅 Date: {date}
+    Unfortunately, no cheap flight have been found on your route.
+    We wish you more luck next time.
+    AIR FAIR CHECKER developer
+    """
+
+    return message.strip()
+
+def storage_error(departure,arrival,date):
+    message = f""" 
+    STORAGE ERROR ⛔
+    📍 Route: {departure} → {arrival}
+    📅 Date: {date}
+    Problem with storage
+    """
+    return message.strip()
