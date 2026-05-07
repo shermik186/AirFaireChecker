@@ -13,6 +13,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Create data folder
+        run: mkdir -p data
+
+      - name: Download previous database
+        uses: actions/download-artifact@v4
+        with:
+          name: flights-db
+          path: data
+        continue-on-error: true
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -26,5 +36,11 @@ jobs:
           API_KEY: ${{ secrets.API_KEY }}
           API_HOST: ${{ secrets.API_HOST }}
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          CHAT_ID: ${{ secrets.CHAT_ID }}
+          CHAT_ID: ${{ secrets.chat_id }}
         run: python main.py
+
+      - name: Upload updated database
+        uses: actions/upload-artifact@v4
+        with:
+          name: flights-db
+          path: data/flights.db
