@@ -1,15 +1,14 @@
 import asyncio
 import sqlite3
 
-from src.fetcher import get_data
-from src.storage import  convert_to_json
-from src.analyzer import under_price_api, cheapest_flight_api,direct_flights_api,latest_price_drop_of_cheapest_flight
 from config import QUERYSTRINGS
-from src.notifier import (telegram_message,cheapest_flight_message,
-price_drop_message, not_working_api, not_enough_data_for_price_drop,
-no_flights,storage_error)
-from src.database import create_tables,insert_flights,get_flights_by_route,clean_old_flights
-
+from src.analyzer import cheapest_flight_api, latest_price_drop_of_cheapest_flight
+from src.database import create_tables, insert_flights, get_flights_by_route, clean_old_flights
+from src.fetcher import get_data
+from src.notifier import (telegram_message, cheapest_flight_message,
+                          price_drop_message, not_working_api, not_enough_data_for_price_drop,
+                          no_flights, storage_error)
+from src.storage import convert_to_json
 
 
 def main():
@@ -19,6 +18,7 @@ def main():
         create_tables()
 
         api_data = get_data(querystring)
+        print(api_data)
         departure, arrival = querystring.get("departure_id"), querystring.get("arrival_id")
 
 
